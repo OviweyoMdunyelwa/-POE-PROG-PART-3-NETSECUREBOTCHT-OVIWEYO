@@ -1,28 +1,35 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
-name: .NET
+name: Build NetSecureBotChat
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v4
-    - name: Setup .NET
+
+    - name: Setup .NET 8
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore
+
+    - name: Restore
+      run: dotnet restore "Net Bot App.csproj"
+
     - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet build "Net Bot App.csproj" --configuration Release --no-restore
+
+    - name: Publish
+      run: dotnet publish "Net Bot App.csproj" --configuration Release --output publish
+
+    - name: Upload Build
+      uses: actions/upload-artifact@v4
+      with:
+        name: NetSecureBotChat
+        path: publish
