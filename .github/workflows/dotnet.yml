@@ -2,11 +2,9 @@ name: Build NetSecureBotChat
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main, master ]
   pull_request:
-    branches:
-      - main
+    branches: [ main, master ]
 
 jobs:
   build:
@@ -14,28 +12,23 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+    - name: Checkout Repository
+      uses: actions/checkout@v4
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.0.x'
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
 
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v2
+    - name: Restore
+      run: dotnet restore
 
-      - name: Restore NuGet Packages
-        run: dotnet restore
+    - name: Build
+      run: dotnet build "Net Bot App.csproj" --configuration Release --no-restore -p:EnableWindowsTargeting=true
 
-      - name: Build Solution
-        run: dotnet build "Net Bot App.sln" --configuration Release --no-restore
-
-      - name: Publish Application
-        run: dotnet publish "Net Bot App/Net Bot App.csproj" -c Release -o publish
-
-      - name: Upload Published Files
-        uses: actions/upload-artifact@v4
-        with:
-          name: NetSecureBotChat
-          path: publish
+    - name: Upload Build
+      uses: actions/upload-artifact@v4
+      with:
+        name: NetSecureBotChat
+        path: |
+          **/bin/Release/**
