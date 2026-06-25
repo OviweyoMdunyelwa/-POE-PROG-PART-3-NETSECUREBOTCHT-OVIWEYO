@@ -1,0 +1,43 @@
+
+name: Build NetSecureBotChat
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Publish
+        run: |
+          $project = Get-ChildItem -Recurse -Filter *.csproj | Select-Object -First 1
+          dotnet publish $project.FullName -c Release -o publish
+
+      - name: Upload Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: NetSecureBotChat
+          path: publish
+```
+
