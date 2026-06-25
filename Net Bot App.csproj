@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>Net_Bot_App</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Apr 28, 2026, 01_43_09 PM.png" />
+    <None Remove="ChatGPT Image Apr 28, 2026, 01_14_31 PM.png" />
+    <None Remove="ChatGPT Image Apr 28, 2026, 01_27_39 PM.png" />
+    <None Remove="ChatGPT Image Apr 28, 2026, 01_40_59 PM.png" />
+    <None Remove="ChatGPT Image Apr 28, 2026, 01_48_54 PM.png" />
+    <None Remove="ChatGPT Image Apr 28, 2026, 01_59_24 PM.png" />
+    <None Remove="ChatGPT Image Apr 28, 2026, 02_03_22 PM.png" />
+    <None Remove="ChatGPT Image Apr 28, 2026, 02_11_09 PM %281%29.png" />
+    <None Remove="ChatGPT Image Apr 28, 2026, 11_41_04 AM.png" />
+    <None Remove="ChatGPT Image Apr 28, 2026, 12_32_41 PM.png" />
+    <None Remove="Screenshot_28-4-2026_13159_www.bing.com.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Apr 28, 2026, 01_43_09 PM.png" />
+    <Resource Include="ChatGPT Image Apr 28, 2026, 01_14_31 PM.png" />
+    <Resource Include="ChatGPT Image Apr 28, 2026, 01_27_39 PM.png" />
+    <Resource Include="ChatGPT Image Apr 28, 2026, 01_40_59 PM.png" />
+    <Resource Include="ChatGPT Image Apr 28, 2026, 01_48_54 PM.png" />
+    <Resource Include="ChatGPT Image Apr 28, 2026, 01_59_24 PM.png" />
+    <Resource Include="ChatGPT Image Apr 28, 2026, 02_03_22 PM.png" />
+    <Resource Include="ChatGPT Image Apr 28, 2026, 02_11_09 PM (1).png" />
+    <Resource Include="ChatGPT Image Apr 28, 2026, 11_41_04 AM.png" />
+    <Resource Include="ChatGPT Image Apr 28, 2026, 12_32_41 PM.png" />
+    <Resource Include="Screenshot_28-4-2026_13159_www.bing.com.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+
+</Project>
